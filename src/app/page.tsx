@@ -7,6 +7,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Clique Vault | TØP Archive',
   description: 'Explora la discografía completa de Twenty One Pilots. Un archivo digital para la Skeleton Clique.',
+  icons: {
+    icon: '/favicon.ico', // Esto apunta automáticamente a src/app/favicon.ico
+  }
 }
 
 export default async function Home() {

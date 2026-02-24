@@ -101,7 +101,7 @@ export default async function Home() {
       {/* Footer Sutil */}
       <footer className="max-w-7xl mx-auto p-8 md:p-16 border-t border-white/5 mt-20">
         <p className="text-zinc-700 text-[10px] font-mono uppercase tracking-[0.3em]">
-          Stay Alive. ||-//
+          A project by BlakDev, from the Clique, for the Clique. Stay Alive |-/
         </p>
       </footer>
     </main>

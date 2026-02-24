@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Metadata } from 'next'
 
 // 1. Definición de Tipos
@@ -49,16 +50,22 @@ export default async function AlbumPage({ params }: Props) {
 
   if (error) {
     return (
-      <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-red-500 font-mono italic">Error: {error.message}</div>
+      <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-10">
+        <div className="flex flex-col items-center gap-4">
+          <div className="text-red-500 font-mono italic text-center">Error: {error.message}</div>
+          <Link href="/" className="text-zinc-400 hover:text-white underline decoration-zinc-700 underline-offset-4">← Return to Home</Link>
+        </div>
       </main>
     )
   }
 
   if (!songs || songs.length === 0) {
     return (
-      <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-zinc-500 font-mono italic">Álbum no encontrado</div>
+      <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-10">
+        <div className="flex flex-col items-center gap-4">
+          <div className="text-zinc-500 font-mono italic">Álbum no encontrado</div>
+          <Link href="/" className="text-zinc-400 hover:text-white underline decoration-zinc-700 underline-offset-4">← Return to Home</Link>
+        </div>
       </main>
     )
   }
@@ -67,7 +74,19 @@ export default async function AlbumPage({ params }: Props) {
   const { data: coverData } = supabase.storage.from('songs').getPublicUrl(albumInfo.cover_path)
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 pb-20 selection:bg-yellow-400 selection:text-black">
+    <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 pb-20 selection:bg-yellow-400 selection:text-black relative">
+      
+      {/* Botón Flotante "Back to Vault" */}
+      <div className="absolute top-8 left-8 z-50">
+        <Link 
+          href="/" 
+          className="group flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 hover:text-white hover:border-white/20 transition-all duration-300 shadow-2xl"
+        >
+          <span className="transition-transform group-hover:-translate-x-1">←</span>
+          Back to Vault
+        </Link>
+      </div>
+
       {/* Hero Section con Background Blur */}
       <section className="relative h-[45vh] md:h-[55vh] flex items-end p-8 md:p-16 overflow-hidden">
         {/* Capa de fondo desenfocada */}
@@ -82,7 +101,7 @@ export default async function AlbumPage({ params }: Props) {
         
         <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-end max-w-6xl mx-auto w-full">
           {/* Portada del Álbum */}
-          <div className="w-56 h-56 md:w-80 md:h-80 shadow-[0_20px_60px_rgba(0,0,0,0.7)] flex-shrink-0 border border-white/10 group overflow-hidden">
+          <div className="w-56 h-56 md:w-80 md:h-80 shadow-[0_20px_60px_rgba(0,0,0,0.7)] flex-shrink-0 border border-white/10 group overflow-hidden bg-zinc-900">
             <Image 
               src={coverData.publicUrl} 
               alt={albumInfo.album} 

@@ -96,7 +96,7 @@ export default async function AlbumPage({ params }: Props) {
           {/* Textos del Hero */}
           <div className="text-center md:text-left space-y-2">
             <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-yellow-400">
-              Official Release
+              TWENTY ONE PILOTS PRESENTS
             </p>
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase italic leading-none">
               {albumInfo.album}
